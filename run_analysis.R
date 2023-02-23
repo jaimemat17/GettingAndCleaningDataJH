@@ -49,6 +49,10 @@ testData = cbind(testSubjects,Y_testData,X_testData)
 
 cleanDataset = rbind(trainData, testData)
 
+
 groupedData <- cleanDataset %>% 
                 group_by(Subject,Activity) %>%
                 summarize(across(everything(), ~mean(.)))
+
+## Write dataste into txt file
+write.table(groupedData, file="tidyDataset.txt", row.name=FALSE)
